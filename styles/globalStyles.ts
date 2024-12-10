@@ -1,7 +1,8 @@
 import { StyleSheet } from "react-native";
+import MYTHEME from "./myTheme";
 
 const theme = {
-  primaryColor: "darkblue",
+  primaryColor: "#00330C",
   defaultRadius: 4,
 };
 
@@ -11,11 +12,16 @@ const globalStyles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 24,
+    width:"100%"
   },
   title: {
+    textAlign:"center",
     fontSize: 18,
     fontWeight: "bold",
     marginVertical: 4,
+    color:"white",
+    backgroundColor:MYTHEME.primary,
+    width:'100%'
   },
   input: {
     height: 32,
@@ -29,7 +35,7 @@ const globalStyles = StyleSheet.create({
   button: {
     height: 32,
     padding: 4,
-    backgroundColor: "darkblue",
+    backgroundColor: theme.primaryColor,
     borderRadius: theme.defaultRadius,
     width: "100%",
   },

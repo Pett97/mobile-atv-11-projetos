@@ -23,14 +23,14 @@ export default function Home() {
         }}
       />
 
-      <Text style={globalStyles.title}>useCollection example</Text>
+      <Text style={globalStyles.title}>Projetos</Text>
 
       <StyledButton
         title="Criar Projeto"
         onPress={async () => {
           try {
             await create({
-              nomeProjeto: faker.lorem.words(4),
+              nomeProjeto: faker.lorem.words(2),
               responsavel: faker.name.fullName(),
               contato: faker.phone.number(),
               endereco: faker.address.streetAddress(),

@@ -1,8 +1,10 @@
 import { useRouter } from "expo-router";
 import { Alert, Text, View } from "react-native";
 
-import Project from '../types/Project';
+import Project from "../types/Project";
 import StyledButton from "./StyledButton";
+import MYTHEME from "../styles/myTheme";
+import myStyle from "./viewProject.style";
 
 interface ViewProjectProps {
   project: Project;
@@ -14,55 +16,63 @@ export default function ViewProject({ project, onDelete }: ViewProjectProps) {
 
   return (
     <View
-      style={{ borderTopColor: "darkblue", borderTopWidth: 1, marginTop: 12 }}
+      style={myStyle.container}
     >
-      <Text>id: {project.id}</Text>
-      <Text>Nome Projeto: {project.nomeProjeto}</Text>
-      <Text>Responsavel : {project.responsavel}</Text>
-      <Text>contato: {project.contato}</Text>
-      <Text>Endereco: {project.endereco}</Text>
+      <Text style={myStyle.text}>{project.nomeProjeto}</Text>
+      <Text>
+        <Text style={myStyle.text}>Responsavel :</Text> {project.responsavel}
+      </Text>
+      <Text>
+        <Text style={myStyle.text}>Contato:</Text> {project.contato}
+      </Text>
+      <Text>
+        <Text style={myStyle.text}>Endereco: </Text>
+        {project.endereco}
+      </Text>
 
-      <View style={{ flexDirection: "row" }}>
-        <StyledButton
-          title="Visualizar Detalhes Projeto"
-          onPress={() => {
-            if (project.id) {
-              router.push(`/home/${project.id}/`);
-            } else {
-              Alert.alert(
-                "View error",
-                "Nao Foi Possivel Visualizar os dados do projeto!"
-              );
-            }
-          }}
-          style={{ width: "50%" }}
-        />
+      <View style={myStyle.containerAction}>
+        <View style={{ flexDirection: "row" }}>
+          <StyledButton
+            title="Visualizar Detalhes"
+            onPress={() => {
+              if (project.id) {
+                router.push(`/home/${project.id}/`);
+              } else {
+                Alert.alert(
+                  "View error",
+                  "Nao Foi Possivel Visualizar os dados do projeto!"
+                );
+              }
+            }}
+            style={{ width: "50%" }}
+          />
 
-        <StyledButton
-          title="Delete"
-          onPress={() => {
-            if (project.id) {
-              Alert.alert("Remover Projeto", "Confirmar ?", [
-                {
-                  text: "Sim",
-                  onPress: async () => {
-                    onDelete();
+          <StyledButton
+            title="Delete"
+            onPress={() => {
+              if (project.id) {
+                Alert.alert("Remover Projeto", "Confirmar ?", [
+                  {
+                    text: "Sim",
+                    onPress: async () => {
+                      onDelete();
+                    },
                   },
-                },
-                {
-                  text: "Não",
-                  style: "cancel",
-                },
-              ]);
-            } else {
-              Alert.alert(
-                "delete error",
-                "não foi possivel demover projeto "
-              );
-            }
-          }}
-          style={{ width: "50%", backgroundColor: "darkred" }}
-        />
+                  {
+                    text: "Não",
+                    style: "cancel",
+                  },
+                ]);
+              } else {
+                Alert.alert(
+                  "delete error",
+                  "não foi possivel demover projeto "
+                );
+              }
+            }}
+            style={{ width: "50%", backgroundColor: "darkred" }}
+          />
+        </View>
       </View>
     </View>
   );
